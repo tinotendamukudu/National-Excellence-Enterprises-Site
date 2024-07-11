@@ -7219,6 +7219,55 @@ img.img-fullwidth {
     height: auto;
 }
 
+/*** Service ***/
+.service-background {
+    background-color: rgb(255, 255, 255);
+  }
+  
+  .service-item {
+      background: #03545D;
+      color: white;
+      transition: .5s;
+      border-radius: 8px;
+  }
+  
+  /*@media(max-width:728px) {
+    .service-item {
+      background: var(--indigenous);
+      color: white;
+      width: 50%;
+      transition: .5s;
+      border-radius: 8px;
+  }
+  
+  }*/
+  
+  .service-item .service-title h5 {
+    color: #E66605;
+  }
+  
+  .service-item:hover {
+      margin-top: -10px;
+      background: #03545D;
+  }
+  
+  .service-item * {
+      transition: .5s;
+  }
+  
+  .service-item:hover * {
+      color: var(--light) !important;
+  }
+  .custom-btn {
+    border: 2px solid #E66605;
+    color: white;
+  }
+  .custom-btn:hover {
+    background: #E66605;
+    color: white;
+  }
+
+
 img.grey-hover {
     filter: gray;
     /* IE6-9 */

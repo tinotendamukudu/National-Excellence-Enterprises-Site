@@ -71,7 +71,7 @@ document.addEventListener("touchstart", function () {}, false);
         numFiles = input.get(0).files ? input.get(0).files.length : 1,
         label = input
           .val()
-          .replace(/\\/g, "https://mgsdemo.mgscoder.com/")
+          .replace(/\\/g, "#")
           .replace(/.*\//, "");
       input.trigger("fileselect", [numFiles, label]);
     });
@@ -131,26 +131,54 @@ function previousStep1() {
   $("#section-2").removeClass("open");
   $("#section-2").addClass("slide-right");
 }
+
 function nextStep3() {
-  var reqsevice = $("#reqsevice").val();
-  var reqfeatures = $("#reqfeatures").val();
-  var priority = $("input[name=priority]:checked").val();
-  if (reqsevice) $(".validreqsevice .help-block.with-errors").html("");
+  var shoulderwidth = $("#shoulderwidth").val();
+  var chestwidth = $("#chestwidth").val();
+  var cuff = $("#cuff").val();
+  var sleevelength = $("#sleevelength").val();
+  var bodylength = $("#bodylength").val();
+
+
+  // Update display within the same function
+  $("#shoulderwidthData").html("<strong>Shoulder Width:</strong> " + shoulderwidth);
+  $("#chestwidthData").html("<strong>Chest Width:</strong> " + chestwidth);
+  $("#cuffData").html("<strong>Cuff:</strong> " + cuff);
+  $("#sleevelengthData").html("<strong>Sleeve Length:</strong> " + sleevelength);
+  $("#bodylengthData").html("<strong>Body Length:</strong> " + bodylength);
+  
+
+  if (shoulderwidth) $(".validshoulderwidth .help-block.with-errors").html("");
   else
-    $(".validreqsevice .help-block.with-errors").html(
-      '<ul class="list-unstyled"><li>Please Select Service</li></ul>'
+    $(".validshoulderwidth .help-block.with-errors").html(
+      '<ul class="list-unstyled"><li>Please enter Your Shoulder Width</li></ul>'
     );
-  if (reqfeatures) $(".validreqfeatures .help-block.with-errors").html("");
+
+  if (chestwidth) $(".validchestwidth .help-block.with-errors").html("");
   else
-    $(".validreqfeatures .help-block.with-errors").html(
-      '<ul class="list-unstyled"><li>Please Select Features</li></ul>'
+    $(".validchestwidth .help-block.with-errors").html(
+      '<ul class="list-unstyled"><li>Please enter Your Chest Width</li></ul>'
     );
-  if (priority) $(".validpriority .help-block.with-errors").html("");
+
+  if (cuff) $(".validcuff .help-block.with-errors").html("");
   else
-    $(".validpriority .help-block.with-errors").html(
-      '<ul class="list-unstyled"><li>Please Select Priority</li></ul>'
+    $(".validcuff .help-block.with-errors").html(
+      '<ul class="list-unstyled"><li>Please enter Your Cuff Measurement</li></ul>'
     );
-  if (reqsevice && reqfeatures && priority) {
+
+  if (sleevelength) $(".validsleevelength .help-block.with-errors").html("");
+  else
+    $(".validsleevelength .help-block.with-errors").html(
+      '<ul class="list-unstyled"><li>Please enter Your Sleeve Length</li></ul>'
+    );
+
+  if (bodylength) $(".validbodylength .help-block.with-errors").html("");
+  else
+    $(".validbodylength .help-block.with-errors").html(
+      '<ul class="list-unstyled"><li>Please enter Your Body Length</li></ul>'
+    );
+
+  if (shoulderwidth && chestwidth && cuff && sleevelength && bodylength) {
     $("#section-2 .help-block.with-errors.mandatory-error").html("");
     $("#section-2").removeClass("open");
     $("#section-2").addClass("slide-left");
@@ -162,6 +190,7 @@ function nextStep3() {
     );
   }
 }
+
 function previousStep2() {
   $("#section-2").removeClass("slide-left");
   $("#section-2").addClass("open");
@@ -254,12 +283,9 @@ function nextStep5() {
   var phone = $("#phone").val();
   var attachedFile = $("#attachedFile").val();
   var additionalinfo = $("#additionalinfo").val().replace(/\n/g, "<br>");
-  $("#osData").html("<strong>Selected OS:</strong> " + opsys);
-  $("#serviceData").html("<strong>Selected Service:</strong> " + reqsevice);
-  $("#reqfeaturesData").html(
-    "<strong>Selected Features:</strong> " + reqfeatures
-  );
-  $("#priorityData").html("<strong>priority:</strong> " + priority);
+
+  $("#osData").html("<strong>Selected Category:</strong> " + opsys);
+  
   $("#firstNameData").html("<strong>First Name:</strong> " + fname);
   $("#lastNameData").html("<strong>Last Name:</strong> " + lname);
   $("#genderData").html("<strong>Gender:</strong> " + gender);
