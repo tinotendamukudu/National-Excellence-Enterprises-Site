@@ -7173,6 +7173,17 @@ section .color-overlay {
     background: #eee;
 }
 
+
+.custom-icon {
+    color: #ffffff; /* Custom color */
+    transition: transform 0.3s; /* Animation on hover */
+}
+
+.custom-icon:hover {
+    transform: scale(1.2);
+    color: #ffffff; /* Scale up on hover */
+}
+
 #services-list li a {
     display: block;
     padding: 15px 20px 15px 20px;

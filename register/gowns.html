@@ -11,7 +11,7 @@
     <title>National Awards Excellence</title>
     <meta name="description" content="National Medical Excellence Awards"/>
     <meta name="keywords" content="National Medical Excellence Awards" />
-    <link href="favicon.html" rel="icon" />
+    <link rel="icon" href="../images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/fontawesome/all.min.css"/>
     <link rel="stylesheet" href="css/quote-form.css" type="text/css"/>
@@ -36,6 +36,8 @@
                         id="quoteMeForm"
                         name="quoteMeForm"
                         data-toggle="validator"
+                        method="POST"
+                        action="gowns.php"
                         class="quoteMeForm"
                         enctype="multipart/form-data"
                       >
@@ -50,40 +52,32 @@
                                   </div>
                                 </div>
                               </div>
-                              <h4>Select Category:</h4>
-                              <div
-                                class="help-block with-errors mandatory-error"
-                              ></div>
-                              <div class="form-group validopsys">
-                                <ul class="mgs-radio list-unstyled">
-                                    <li>
-                                      <input type="radio" name="opsys1" id="opsys1" />
-                                      <label for="opsys1" class="text-center">Doctors</label>
-                                    </li>
-                                    <li>
-                                      <input type="radio" name="opsys" id="opsys2" />
-                                      <label for="opsys2" class="text-center">Nurses</label>
-                                    </li>                                    
-                                    <li>
-                                      <input type="radio" name="opsys" id="opsys3" />
-                                      <label for="opsys3" class="text-center">Nurses</label>
-                                    </li>                                    
-                                </ul>
-                                <ul class="mgs-radio list-unstyled">
-                                  <li>
-                                    <input type="radio" name="opsys" id="opsys4" />
-                                    <label for="opsys4" class="text-center">Medical Researchers</label>
-                                  </li>
-                                  <li>
-                                    <input type="radio" name="opsys" id="opsys5" value="Apple" />
-                                    <label for="opsys5" class="text-center">Institutions</label>
-                                  </li>
-                                  <li>
-                                    <input type="radio" name="opsys" id="opsys6" value="Windows" />
-                                    <label for="opsys6" class="text-center">Pharmacies</label>
-                                  </li>
-                                </ul>
-                                
+
+                              <h4>Select Service:</h4>
+                              <div class="form-group validcategory">
+                                <select
+                                  class="form-control"
+                                  name="reqcategory"
+                                  id="reqcategory"
+                                  required
+                                  data-error="Please Select a Category"
+                                >
+                                  <option value="">
+                                    --- Select a Your Category* ---
+                                  </option>
+                                  <option value="Doctor">
+                                    Doctor
+                                  </option>
+                                  <option value="Nurse">Nurse</option>
+                                  <option value="Medical Researchers">
+                                    Medical Researchers
+                                  </option>
+                                  <option value="Hospital">Hospital</option>
+                                  <option value="Surgery">Surgery</option>
+                                </select>
+                                <div class="input-group-icon">
+                                  <i class="fa-solid fa-gear"></i>
+                                </div>
                                 <div class="help-block with-errors"></div>
                               </div>
                               <div class="form-group quoteForm-step-1">
@@ -97,6 +91,7 @@
                               </div>                              
                             </fieldset>
                           </div>
+
                           <div id="section-2" class="section slide-right">
                             <fieldset>
                               <h3 class="section-title">Step 2 of 5</h3>
@@ -403,11 +398,11 @@
                               <h4>Your Inputted Data Summary:</h4>
                               <div class="row">
                                 <div class="column col-md-6 col-sm-12">
-                                  <h5>Section One</h5>
+                                  <h5>Category</h5>
                                   <div class="section-info-box">
-                                    <p id="osData"></p>
+                                    <p id="categoryData"></p>
                                   </div>
-                                  <h5>Section Two</h5>
+                                  <h5>Gown Measurements</h5>
                                   <div class="section-info-box">
                                       <p id="shoulderwidthData"></p>
                                       <p id="chestwidthData"></p>
@@ -415,8 +410,9 @@
                                       <p id="sleevelengthData"></p>
                                       <p id="bodylengthData"></p>
                                   </div>
+                                </div>
                                 <div class="column col-md-6 col-sm-12">
-                                  <h5>Section Three</h5>
+                                  <h5>Personal Details</h5>
                                   <div class="section-info-box">
                                     <p id="firstNameData"></p>
                                     <p id="lastNameData"></p>
@@ -425,14 +421,14 @@
                                     <p id="emailaddressData"></p>
                                     <p id="phoneData"></p>
                                   </div>
-                                  <h5>Section Four</h5>
+                                  <h5>Additional Information</h5>
                                   <div class="section-info-box">
                                     <p id="additionalinfoData"></p>
                                   </div>
                                 </div>
                                 <div class="col-sm-12">
                                   <div>
-                                    <strong>Would you like to provide requirements details as Attachment?</strong>
+                                    <strong>Would you like to provide a picture of the preferred sizes?</strong>
                                   </div>
                                   <div class="form-group attachmentFile">
                                     <label class="input-group-btn">
@@ -444,13 +440,13 @@
                                   </div>
                                 </div>
                                 
-                                <div class="form-group col-sm-12">
+                                <!--<div class="form-group col-sm-12">
                                   <div id="humanCheckCaptchaBox"></div>
                                   <div id="firstDigit"></div>
                                   + <div id="secondDigit"></div>
                                   = <input name="humanCheckCaptchaInput" id="humanCheckCaptchaInput" placeholder="" maxlength="3" class="form-control" type="text" required data-error="Please solve Captcha">
                                   <div class="help-block with-errors"></div>
-                                </div>
+                                </div>-->
 
                                 <div class="col-sm-12">
                                   <p id="AggreData">
@@ -459,7 +455,7 @@
                                   </p>
                                   <div class="form-group">
                                     <div class="checkbox">
-                                      <label><input name="cookieconsent" id="cookieconsent" type="checkbox" value="1" required data-error="Required Consent"> I consent to National Medical Excellence Awards<a href="#">Privacy Policy</a></label>
+                                      <label><input name="cookieconsent" id="cookieconsent" type="checkbox" value="1" required data-error="Required Consent"> I consent to National Medical Excellence Awards <a href="#"> Privacy Policy</a></label>
                                     </div>
                                     <div class="help-block with-errors"></div>
                                   </div>
@@ -471,6 +467,8 @@
                                     <button class="btn btn-custom" type="button" onclick="previousStep4()">
                                       <span class="fa-solid fa-arrow-left"></span> Back
                                     </button>
+
+                                    
                                     <button id="Submit" class="btn btn-custom float-end" type="submit">
                                       Submit
                                     </button>
@@ -504,7 +502,7 @@
     </div>
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/validator.min.js"></script>
-    <script src="js/gowns.js"></script>
+    <script src="js/gowns.js" defer></script>
     <script>
       (function (i, s, o, g, r, a, m) {
         i["GoogleAnalyticsObject"] = r;

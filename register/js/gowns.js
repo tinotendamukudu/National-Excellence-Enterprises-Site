@@ -2,7 +2,13 @@ document.addEventListener("touchstart", function () {}, false);
 (function ($) {
   "use strict";
   $("span#mgsYear").html(new Date().getFullYear());
-  $(function () {
+
+
+  $("#quoteMeForm").on("submit", function (event) {
+    event.preventDefault();
+    submitForm();
+  });
+  /*$(function () {
     var randNumber_1 = parseInt(Math.ceil(Math.random() * 15), 10);
     var randNumber_2 = parseInt(Math.ceil(Math.random() * 15), 10);
     humanCheckCaptcha(randNumber_1, randNumber_2);
@@ -39,32 +45,32 @@ document.addEventListener("touchstart", function () {}, false);
           return false;
         }
       }
-    });
-  function submitForm() {
-    var form_data = new FormData($("#quoteMeForm")[0]);
-    form_data.append("file", form_data);
-    $("#processing-image").show();
-    $("#final-step-buttons").hide();
-    $.ajax({
-      type: "POST",
-      url: "quote-process-2.php",
-      data: form_data,
-      processData: false,
-      contentType: false,
-      success: function (text) {
-        if ($.trim(text) === "success") {
-          formSuccess();
-        } else {
-          formError();
-          submitMSG(false, text);
-        }
-      },
-      complete: function () {
-        $("#processing-image").hide();
-        $("#final-step-buttons").show();
-      },
-    });
+    });*/
+    function submitForm() {
+      var form_data = new FormData($("#quoteMeForm")[0]);
+      $("#processing-image").show();
+      $("#final-step-buttons").hide();
+      $.ajax({
+          type: "POST",
+          url: "gowns.php",
+          data: form_data,
+          processData: false,
+          contentType: false,
+          success: function (text) {
+              if ($.trim(text) === "success") {
+                  formSuccess();
+              } else {
+                  formError();
+                  submitMSG(false, text);
+              }
+          },
+          complete: function () {
+              $("#processing-image").hide();
+              $("#final-step-buttons").show();
+          },
+      });
   }
+  
   $(function () {
     $(document).on("change", ":file", function () {
       var input = $(this),
@@ -109,8 +115,8 @@ function isEmail(email) {
   return regex.test(email);
 }
 function nextStep2() {
-  var opsys = $("input[name=opsys]:checked").val();
-  if (opsys) {
+  var reqcategory = $("#reqcategory").val();
+  if (reqcategory) {
     $("#section-1 .help-block.with-errors").html("");
     $("#section-1").removeClass("open");
     $("#section-1").addClass("slide-left");
@@ -120,8 +126,8 @@ function nextStep2() {
     $("#section-1 .help-block.with-errors").html(
       '<ul class="list-unstyled"><li>Please Fill the Form Properly</li></ul>'
     );
-    $(".validopsys .help-block.with-errors").html(
-      '<ul class="list-unstyled"><li>Please Select OS</li></ul>'
+    $(".validcategory .help-block.with-errors").html(
+      '<ul class="list-unstyled"><li>Please Select Your Category</li></ul>'
     );
   }
 }
@@ -271,10 +277,7 @@ function previousStep3() {
   $("#section-4").addClass("slide-right");
 }
 function nextStep5() {
-  var opsys = $("input[name=opsys]:checked").val();
-  var reqsevice = $("#reqsevice").val();
-  var reqfeatures = $("#reqfeatures").val();
-  var priority = $("input[name=priority]:checked").val();
+  var reqcategory = $("#reqcategory").val();
   var fname = $("#fname").val();
   var lname = $("#lname").val();
   var gender = $("#gender").val();
@@ -284,8 +287,7 @@ function nextStep5() {
   var attachedFile = $("#attachedFile").val();
   var additionalinfo = $("#additionalinfo").val().replace(/\n/g, "<br>");
 
-  $("#osData").html("<strong>Selected Category:</strong> " + opsys);
-  
+  $("#categoryData").html("<strong>Selected Categories:</strong> " + reqcategory);
   $("#firstNameData").html("<strong>First Name:</strong> " + fname);
   $("#lastNameData").html("<strong>Last Name:</strong> " + lname);
   $("#genderData").html("<strong>Gender:</strong> " + gender);
