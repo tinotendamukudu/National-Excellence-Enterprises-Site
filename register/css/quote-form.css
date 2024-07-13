@@ -54,7 +54,7 @@ h3.section-title {
   font-weight: bold;
   text-align: center;
   margin: 30px 0 15px;
-  border-bottom: 3px solid #0247fe;
+  border-bottom: 3px solid #03545D;
 }
 .section-wrap {
   overflow: hidden;
@@ -469,4 +469,8 @@ h3.section-title {
   .btn.btn-default.disable {
     display: none;
   }
+}
+
+.footer-site-link {
+  color: #03545D;
 }

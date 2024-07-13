@@ -7232,7 +7232,8 @@ img.img-fullwidth {
 
 /*** Service ***/
 .service-background {
-    background-color: rgb(255, 255, 255);
+    background-color: white;
+    margin-bottom: 100px; 
   }
   
   .service-item {
